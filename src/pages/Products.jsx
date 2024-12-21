@@ -1,10 +1,10 @@
-import { Filters, PaginationContainer, ProductsContainer } from '../components'
-import { customFetch } from '../utils'
-
-const url = '/products'
+import { Filters, PaginationContainer, ProductsContainer } from '../components';
+import { customFetch } from '../utils';
+const url = '/products';
 
 const allProductsQuery = (queryParams) => {
-  const { search, category, company, sort, price, shipping, page } = queryParams
+  const { search, category, company, sort, price, shipping, page } =
+    queryParams;
 
   return {
     queryKey: [
@@ -21,24 +21,23 @@ const allProductsQuery = (queryParams) => {
       customFetch(url, {
         params: queryParams,
       }),
-  }
-}
+  };
+};
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const loader =
   (queryClient) =>
   async ({ request }) => {
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
-    ])
-    const response = await await queryClient.ensureQueryData(
-      allProductsQuery(params)
-    )
+    ]);
 
-    const products = response.data.data
-    const meta = response.data.meta
-    return { products, meta, params }
-  }
+    const response = await queryClient.ensureQueryData(
+      allProductsQuery(params)
+    );
+    const products = response.data.data;
+    const meta = response.data.meta;
+    return { products, meta, params };
+  };
 
 const Products = () => {
   return (
@@ -47,6 +46,6 @@ const Products = () => {
       <ProductsContainer />
       <PaginationContainer />
     </>
-  )
-}
-export default Products
+  );
+};
+export default Products;

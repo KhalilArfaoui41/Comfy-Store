@@ -1,9 +1,8 @@
-// eslint-disable-next-line react/prop-types
 const FormInput = ({ label, name, type, defaultValue, size }) => {
   return (
-    <div className="form-control ">
-      <label className="label">
-        <span className="label-text capitalize">{label}</span>
+    <div className='form-control'>
+      <label htmlFor={name} className='label'>
+        <span className='label-text capitalize'>{label}</span>
       </label>
       <input
         type={type}
@@ -12,6 +11,6 @@ const FormInput = ({ label, name, type, defaultValue, size }) => {
         className={`input input-bordered ${size}`}
       />
     </div>
-  )
-}
-export default FormInput
+  );
+};
+export default FormInput;
